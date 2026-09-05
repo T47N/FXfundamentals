@@ -29,6 +29,8 @@ jobs:
           pip install --upgrade Cython==0.29.33 buildozer virtualenv
 
       - name: Build APK
+        env:
+          VIRTUALENV_PIP: "23.3.2"
         run: |
           yes | buildozer -v android debug
 
