@@ -13,7 +13,10 @@ jobs:
 
       - name: Build APK using official Buildozer Docker image
         run: |
-          yes | docker run --rm -i -v "${{ github.workspace }}":/home/user/hostcwd kivy/buildozer -v android debug
+          yes | docker run --rm -i \
+            -e PIP_CONSTRAINT=/home/user/hostcwd/pip-constraint.txt \
+            -v "${{ github.workspace }}":/home/user/hostcwd \
+            kivy/buildozer -v android debug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
